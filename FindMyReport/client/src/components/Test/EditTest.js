@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { addTest } from "../../modules/testManager";
+import { UpdateTest } from "../../modules/testManager";
 import { getAllPatients } from "../../modules/patientManager";
 import {getAllSamples} from "../../modules/sampleManager"
 
 
-const AddTest = () => {
+const EditTest = () => {
     const [patient, setPatients] = useState([]);
     const [sample, setSample] = useState([]);
     const history = useHistory();
     const providerId = localStorage.getItem("ProviderId")
 
-
-    let today = new Date(Date.now())
-
     const [test, setTest] = useState({
-        collectionDate: Date.now(),
+        collectionDate: "",
         sampleId: "",
-        results: false,
+        results: " ",
         patientId: "",
-        providerId: providerId,
-        completedDate:  today.toISOString()
+        providerId: " ",
+        completedDate:  "",
     });
+    const { id } = useParams();
+
+    const history = useHistory();
 
   
     const getPatients = () => {
@@ -40,19 +40,21 @@ const AddTest = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addTest(test).then(() => history.push(`/test`));;
+       UpdateTest(test).then(() => history.push(`/test`));;
     };
 
     useEffect(() => {
         getPatients();
         getSamples();
+        getTestById(id)
+        .then(res => setTest(res))
     }, []);
 
 
 
     return (
         <form className="main-content">
-            <h2 className="_title">Add Test:</h2>
+            <h2 className="_title">Edit Test:</h2>
             <fieldset className="fieldset">
                 <div className="form-group">
                     <label htmlFor="collectionDate">CollectionDate:</label>

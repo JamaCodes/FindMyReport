@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Test from "./Test";
 import { Button, Table } from "reactstrap";
 import { getAllTests } from "../../modules/testManager";
+import { useHistory } from "react-router-dom"
 
 const TestList = () => {
-  // const history = useHistory();
+  const history = useHistory();
   const [tests, setTests] = useState([]);
   const getTests = () => {
     getAllTests().then((tests) => setTests(tests));
@@ -16,7 +17,9 @@ const TestList = () => {
   return (
     <>
       <div>
-        <Button>Create Test</Button>
+      <Button color="info" onClick={() => history.push(`/addTest`)}>
+                Create New Test
+            </Button>
       </div>
       <div>
         <Table className="testList" size="sm" striped="true">

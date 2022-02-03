@@ -11,16 +11,20 @@ export default function ApplicationViews({ isLoggedIn }) {
     return (
         <main>
         <Switch> 
+
         <Route path="/" exact>
+                    {isLoggedIn ? <PatientList />: <Redirect to="/login" />}
+                </Route>
+        <Route path="/test" exact>
                     {isLoggedIn ? <TestList />: <Redirect to="/login" />}
                 </Route>
-                
+
                 <Route path="/login" exact>
                   <Login />
                 </Route> 
               
                 <Route path="/addtest" exact>
-                  <AddTest />
+                {isLoggedIn ?  <AddTest /> : <Redirect to="/login" />}
                 </Route> 
         </Switch>
         </main>
