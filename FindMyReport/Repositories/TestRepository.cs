@@ -20,7 +20,7 @@ namespace FindMyReport.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT t.Id, t.SampleId, t.PatientId, p.FirstName, t.CollectionDate, t.ProviderId, up.FirstName as ProviderName, t.CompletedDate, t.Results, s.Name as Name
+                    SELECT t.Id, t.SampleId, t.PatientId, p.FirstName, t.CollectionDate, t.ProviderId, up.FirstName as ProviderFirstName, up.LastName as ProviderLastName, t.CompletedDate, t.Results, s.Name as Name
                            FROM Test t
                            Left Join Sample s on t.SampleId = s.id
                            left Join Patient p on t.PatientId = p.Id
@@ -46,15 +46,15 @@ namespace FindMyReport.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Patient (
-                            SampleId, PatientId, Results, Collection, ProviderId, CompletedDate)
+                        INSERT INTO Test (
+                            SampleId, PatientId, Results, CollectionDate, ProviderId, CompletedDate)
                         OUTPUT INSERTED.ID
                         VALUES (
-                           @SampleId, @PatientId, @Results, @Collection, @ProviderId, @CompletedDate)";
+                           @SampleId, @PatientId, @Results, @CollectionDate, @ProviderId, @CompletedDate)";
                     cmd.Parameters.AddWithValue("@SampleId", test.SampleId);
                     cmd.Parameters.AddWithValue("@PatientId", test.PatientId);
                     cmd.Parameters.AddWithValue("@Results", test.Results);
-                    cmd.Parameters.AddWithValue("@Collection", test.CollectionDate);
+                    cmd.Parameters.AddWithValue("@CollectionDate", test.CollectionDate);
                     cmd.Parameters.AddWithValue("@ProviderId", test.ProviderId);
                     cmd.Parameters.AddWithValue("@CompletedDate", test.CompletedDate);
                     test.Id = (int)cmd.ExecuteScalar();
@@ -83,8 +83,9 @@ namespace FindMyReport.Repositories
                 },
                 UserProfile = new UserProfile()
                 {
-                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                    FirstName = reader.GetString(reader.GetOrdinal("FirstName"))
+                    Id = DbUtils.GetInt(reader, "Id"),
+                    FirstName = DbUtils.GetString(reader, "ProviderFirstName"),
+                    LastName = DbUtils.GetString(reader, "ProviderLastName"),
                 },
             };
         }

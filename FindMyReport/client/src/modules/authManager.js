@@ -4,7 +4,12 @@ import "firebase/auth"
 const _apiUrl = "/api/User";
 
 const _doesUserExist = (firebaseUserId) => {
-debugger
+
+  getUserByFireBaseUserId(firebaseUserId).then(user => {
+    localStorage.setItem("ProviderId", user.id);
+
+  });
+
  return getToken().then((token) =>
     fetch(`${_apiUrl}/DoesUserExist/${firebaseUserId}`, {
       method: "GET",
@@ -75,3 +80,13 @@ export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
     onLoginStatusChangeHandler(!!user);
   });
 };
+
+
+export const getUserByFireBaseUserId = (fireId) => {
+  return fetch(_apiUrl + `/${fireId}`, {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+      },
+  }).then((res) => res.json());
+}
