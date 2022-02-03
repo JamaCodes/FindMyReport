@@ -6,6 +6,14 @@ export const getAllTests = () => {
 export const getTestById = () => {
     return fetch(baseUrl).then((res) => res.json());
 };
+export const deleteTest = (testId) => {
+    return fetch(baseUrl + `/${testId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+};
 
 
 export const addTest = (test) => {

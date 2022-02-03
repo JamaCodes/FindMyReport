@@ -4,15 +4,25 @@ import { Button } from "reactstrap";
 
 const Test = ({ test }) => {
   const history = useHistory();
+  const handleDelete = () => {
+    history.push(`/deleteTest/${test.id}`);
+  };
   return (
     <tbody>
       <tr className="text-left px-2">
-        <Button
-          color="info"
-          onClick={() => history.push(`/editTest/${test.id}`)}
-        >
-          Edit
-        </Button>
+        <td>
+          <Button
+            color="info"
+            onClick={() => history.push(`/editTest/${test.id}`)}
+          >
+            Edit
+          </Button>
+        </td>
+        <td>
+          <Button color="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </td>
         <td className="text-left px-2">{test.sample.name}</td>
         <td className="text-left px-2">{test.patient.fullName}</td>
         <td className="text-left px-2">{test.patient.dob}</td>

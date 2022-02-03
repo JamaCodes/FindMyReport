@@ -14,6 +14,10 @@ const TestList = () => {
     getTests();
   }, []);
 
+  useEffect(() => {
+    getTests();
+  }, []);
+
   return (
     <>
       <div>
@@ -25,7 +29,8 @@ const TestList = () => {
         <Table className="testList" size="sm" striped="true">
           <thead>
             <tr>
-              <th scope="row">#</th>
+              <th scope="row"></th>
+              <th scope="row"> </th>
               <th scope="row">Sample Type</th>
               <th scope="row">Patient Name</th>
               <th scope="row">Patient DOB</th>

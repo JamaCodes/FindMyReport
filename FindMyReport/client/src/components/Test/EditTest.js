@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { UpdateTest } from "../../modules/testManager";
 import { getAllPatients } from "../../modules/patientManager";
-import {getAllSamples} from "../../modules/sampleManager"
+import {getAllSamples} from "../../modules/sampleManager";
+import { useParams } from "react-router-dom/";
+import { getTestById } from "../../modules/testManager";
 
 
 const EditTest = () => {
     const [patient, setPatients] = useState([]);
     const [sample, setSample] = useState([]);
     const history = useHistory();
-    const providerId = localStorage.getItem("ProviderId")
+    
 
     const [test, setTest] = useState({
         collectionDate: "",
@@ -21,8 +23,6 @@ const EditTest = () => {
     });
     const { id } = useParams();
 
-    const history = useHistory();
-
   
     const getPatients = () => {
         getAllPatients().then((patient) => setPatients(patient));
@@ -30,6 +30,10 @@ const EditTest = () => {
     const getSamples = () => {
         getAllSamples().then((sample) => setSample(sample));
     };
+
+    const getTest = () => {
+        getTestById(id).then(res => setTest(res))
+        };
 
     const handleControlledInputChange = (event) => {
         const newTest = { ...test };
@@ -46,8 +50,8 @@ const EditTest = () => {
     useEffect(() => {
         getPatients();
         getSamples();
-        getTestById(id)
-        .then(res => setTest(res))
+        getTest();
+     
     }, []);
 
 
@@ -130,4 +134,4 @@ const EditTest = () => {
     );
 };
 
-export default AddTest;
+export default EditTest;

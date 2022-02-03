@@ -4,6 +4,8 @@ import Login from "./components/Login";
 import PatientList from "./components/Patient/PatientList";
 import AddTest from "./components/Test/AddTest";
 import TestList from "./components/Test/TestList";
+import EditTest from "./components/Test/EditTest"
+import DeleteTest from "./components/Test/DeleteTest";
 
 
 
@@ -26,6 +28,12 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/addtest" exact>
                 {isLoggedIn ?  <AddTest /> : <Redirect to="/login" />}
                 </Route> 
+                <Route path="/editTest/:id">
+                    <EditTest userparams />
+                </Route>
+                <Route path="/deleteTest/:id">
+                    <DeleteTest userparams />
+                </Route>
         </Switch>
         </main>
     )
