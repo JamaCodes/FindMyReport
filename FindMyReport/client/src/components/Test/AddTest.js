@@ -19,7 +19,7 @@ const AddTest = () => {
         sampleId: "",
         results: false,
         patientId: "",
-        userProfileId: providerId,
+        providerId: providerId,
         completedDate:  today.toISOString()
     });
 
