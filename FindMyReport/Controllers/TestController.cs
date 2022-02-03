@@ -31,6 +31,28 @@ namespace FindMyReport.Controllers
             _testRepository.Add(test);
             return Ok(test);
         }
+        [HttpGet("TestsById/{id}")]
+        public IActionResult GetByUserId(int id)
+        {
+            var test = _testRepository.GetTestById(id);
+            return Ok(test);
+        }
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Test test)
+        {
+            if (id != test.Id)
+            {
+                return BadRequest();
+            }
+
+            _testRepository.Update(test);
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _testRepository.Delete(id);
+        }
     }
 }
 
