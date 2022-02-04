@@ -120,7 +120,7 @@ const AddTest = () => {
             </button>
             <button
                 className="btn-add-edit"
-                onClick={() => history.push(`/myTests`)}
+                onClick={() => history.push(`/test`)}
             >
                 Cancel
             </button>

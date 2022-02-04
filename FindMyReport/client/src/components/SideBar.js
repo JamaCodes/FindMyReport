@@ -25,42 +25,37 @@ export const SideBar = ({ isOpen, toggle }) => (
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
         <p></p>
-        <SubMenu title="Home" icon={faHome} items={submenus[0]} />
+        
         <NavItem>
-          <NavLink tag={Link} to={"/about"}>
+          <NavLink tag={Link} to={"/"}>
+            <FontAwesomeIcon icon={faHome} className="mr-2" />
+            Home
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to={"/test"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-            About
+            Tests
           </NavLink>
         </NavItem>
-        <SubMenu title="Pages" icon={faCopy} items={submenus[1]} />
+
         <NavItem>
-          <NavLink tag={Link} to={"/pages"}>
-            <FontAwesomeIcon icon={faImage} className="mr-2" />
-            Portfolio
+          <NavLink tag={Link} to={"/report"}>
+            <FontAwesomeIcon icon={faCopy} className="mr-2" />
+           Reports
           </NavLink>
         </NavItem>
+
         <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            <FontAwesomeIcon icon={faQuestion} className="mr-2" />
-            FAQ
-          </NavLink>
+          <a
+            aria-current="page"
+            className="nav-link"
+            style={{ cursor: "pointer" }}
+            onClick={logout}
+          >
+            Logout
+          </a>
         </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/contact"}>
-            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Contact
-          </NavLink>
-        </NavItem>
-        <NavItem>
-              <a
-                aria-current="page"
-                className="nav-link"
-                style={{ cursor: "pointer" }}
-                onClick={logout}
-              >
-                Logout
-              </a>
-            </NavItem>
       </Nav>
     </div>
   </div>
