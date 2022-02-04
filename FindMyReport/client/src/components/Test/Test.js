@@ -17,8 +17,6 @@ const Test = ({ test }) => {
           >
             Edit
           </Button>
-        </td>
-        <td>
           <Button color="danger" onClick={handleDelete}>
             Delete
           </Button>

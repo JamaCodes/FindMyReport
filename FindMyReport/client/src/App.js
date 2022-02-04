@@ -5,9 +5,12 @@ import { Spinner } from "reactstrap";
 import Header from "./components/Header";
 import ApplicationViews from "./ApplicationViews";
 import { onLoginStatusChange } from "./modules/authManager";
+import SideBar from "./components/SideBar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [sidebarIsOpen, setSidebarOpen] = useState(true);
+  const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
 
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);
@@ -22,8 +25,10 @@ function App() {
 
   return (
     <Router>
-        <Header isLoggedIn={isLoggedIn} />
-        <ApplicationViews isLoggedIn={isLoggedIn} />
+      <div className="App wrapper">
+        <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+        <ApplicationViews className="content" isLoggedIn={isLoggedIn} toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+        </div>
     </Router>
   );
 }

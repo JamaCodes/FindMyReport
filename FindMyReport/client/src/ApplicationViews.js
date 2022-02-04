@@ -6,6 +6,7 @@ import AddTest from "./components/Test/AddTest";
 import TestList from "./components/Test/TestList";
 import EditTest from "./components/Test/EditTest"
 import DeleteTest from "./components/Test/DeleteTest";
+import { Dashboard } from "./components/Dashboard";
 
 
 
@@ -15,7 +16,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Switch> 
 
         <Route path="/" exact>
-                    {isLoggedIn ? <PatientList />: <Redirect to="/login" />}
+                    {isLoggedIn ? <Dashboard />: <Redirect to="/login" />}
                 </Route>
         <Route path="/test" exact>
                     {isLoggedIn ? <TestList />: <Redirect to="/login" />}
