@@ -141,6 +141,7 @@ namespace FindMyReport.Repositories
                 Results = DbUtils.GetBool(reader, "Results"),
                 ProviderId = DbUtils.GetInt(reader, "ProviderId"),
                 CollectionDate = DbUtils.GetDateTime(reader, "CollectionDate"),
+                CompletedDate = DbUtils.GetDateTime(reader, "CompletedDate"),
                 SampleId = DbUtils.GetInt(reader, "SampleId"),
                 Sample = new Sample()
                 {

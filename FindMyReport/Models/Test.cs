@@ -12,6 +12,7 @@ namespace FindMyReport.Models
         public Sample Sample { get; set; }
         public Patient Patient { get; set; }
         public UserProfile UserProfile { get; set; }
+        public UserProfile Provider { get; set; }
         public int PatientId { get; set; }
         public bool Results { get; set; }
         public DateTime CollectionDate { get; set; }
