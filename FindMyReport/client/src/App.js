@@ -25,10 +25,12 @@ function App() {
 
   return (
     <Router>
+      <>
       <div className="App wrapper">
         <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
         <ApplicationViews className="content" isLoggedIn={isLoggedIn} toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
         </div>
+        </>
     </Router>
   );
 }

@@ -36,6 +36,7 @@ const TestList = () => {
               <th scope="row">Provider Name</th>
               <th scope="row">Collection Date</th>
               <th scope="row">Completed Date</th>
+              <th scope="row">Add Test to Report</th>
             </tr>
           </thead>
 

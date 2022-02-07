@@ -3,9 +3,7 @@ import PatientList from "./Patient/PatientList";
 import TestList from "./Test/TestList";
 
 
-export const Dashboard = () => {
-   
-
+ const Dashboard = () => {
   return (
     <div className=".container">
 
@@ -14,3 +12,4 @@ export const Dashboard = () => {
     </div>
   );
 };
+export default Dashboard

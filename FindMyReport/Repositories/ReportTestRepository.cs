@@ -54,7 +54,7 @@ namespace FindMyReport.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT rt.Id, rt.ReportId, rt.TestId, s.Name as 'SampleType', p.FirstName, p.LastName, p.DOB, t.CollectionDate, t.CompletedDate, rc.Name, t.Results, r.Name as ReportName, up.FirstName, up.LastName
+                       SELECT rt.Id, rt.ReportId, rt.TestId, s.Name as 'SampleType', p.FirstName, p.LastName, p.DOB, t.CollectionDate, t.CompletedDate, rc.Name as 'patientRace', rc.Id as 'RaceId', t.Results, r.Name as 'ReportName', up.FirstName as 'ProviderFirstName', up.LastName as 'ProviderLastName'
                          FROM ReportTest rt
                               LEFT JOIN Test t ON t.Id = rt.TestId
                               LEFT JOIN Report r ON r.id= rt.ReportId
@@ -77,7 +77,7 @@ namespace FindMyReport.Repositories
                             ReportId = reader.GetInt32(reader.GetOrdinal("ReportId")),
                             Report = new Report
                             {
-                                Name = DbUtils.GetString(reader, "Name")
+                                Name = DbUtils.GetString(reader, "ReportName")
                             },
                             TestId = reader.GetInt32(reader.GetOrdinal("TestId")),
                             Test = new Test()
@@ -86,14 +86,14 @@ namespace FindMyReport.Repositories
                                 Results = DbUtils.GetBool(reader, "Results"),
                                 Provider = new UserProfile()
                                 {
-                                    FirstName = DbUtils.GetString(reader, "FirstName"),
-                                    LastName = DbUtils.GetString(reader, "LastName"),
+                                    FirstName = DbUtils.GetString(reader, "ProviderFirstName"),
+                                    LastName = DbUtils.GetString(reader, "ProviderLastName"),
                                 },
                                 CollectionDate = DbUtils.GetDateTime(reader, "CollectionDate"),
                                 CompletedDate = DbUtils.GetDateTime(reader, "CompletedDate"),
                                 Sample = new Sample()
                                 {
-                                    Name = reader.GetString(reader.GetOrdinal("Name"))
+                                    Name = reader.GetString(reader.GetOrdinal("SampleType"))
                                 },
                                 Patient = new Patient()
                                 {
@@ -102,7 +102,8 @@ namespace FindMyReport.Repositories
                                     DOB = reader.GetDateTime(reader.GetOrdinal("DOB")),
                                     Race = new Race()
                                     {
-                                        Name = reader.GetString(reader.GetOrdinal("Name"))
+                                        Id = DbUtils.GetInt(reader, "RaceId"),
+                                        Name = reader.GetString(reader.GetOrdinal("patientRace"))
                                     }
                                 },
                             }

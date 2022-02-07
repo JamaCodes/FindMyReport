@@ -27,7 +27,7 @@ const AddTest = () => {
 
     let today = new Date(Date.now())
     const [test, setTest] = useState({
-        collectionDate: Date.now(),
+        collectionDate: "",
         sampleId: "",
         results: false,
         patientId: "",

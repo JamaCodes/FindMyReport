@@ -7,6 +7,9 @@ const Test = ({ test }) => {
   const handleDelete = () => {
     history.push(`/deleteTest/${test.id}`);
   };
+  const handleAdd = () => {
+    history.push(`/addtestreport/${test.id}`);
+  };
   return (
     <tbody>
       <tr className="text-left px-2">
@@ -27,6 +30,11 @@ const Test = ({ test }) => {
         <td className="text-left px-2">{test.userProfile.fullName}</td>
         <td className="text-left px-2">{test.collectionDate}</td>
         <td className="text-left px-2">{test.completedDate}</td>
+        <td className="text-left px-2"> 
+        <Button color="success" onClick={handleAdd}>
+          Add
+          </Button>
+        </td>
       </tr>
     </tbody>
   );
