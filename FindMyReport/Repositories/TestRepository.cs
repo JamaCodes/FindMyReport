@@ -64,6 +64,33 @@ namespace FindMyReport.Repositories
                 }
             }
         }
+        public Test FindMyTest(int Id, DateTime CollectionDate)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT t.Id as TestId, t.SampleId, t.PatientId, p.FirstName, t.CollectionDate, t.ProviderId, up.FirstName as ProviderFirstName, up.LastName as ProviderLastName, t.CompletedDate, t.Results, s.Name as Name, p.DOB
+                           FROM Test t
+                           Left Join Sample s on t.SampleId = s.id
+                           left Join Patient p on t.PatientId = p.Id
+                           left join Userprofile up on t.ProviderId = up.Id
+                           WHERE t.CollectionDate = @CollectionDate and Id = @t.Id";
+                    cmd.Parameters.AddWithValue("@CollectionDate", CollectionDate);
+                    cmd.Parameters.AddWithValue("@TestId", Id);
+                    var reader = cmd.ExecuteReader();
+                    Test test = null;
+                    if (reader.Read())
+                    {
+                        test = NewTestFromReader(reader);
+                    }
+                    reader.Close();
+                    return test;
+                }
+            }
+        }
         public void Add(Test test)
         {
             using (var conn = Connection)
@@ -141,6 +168,7 @@ namespace FindMyReport.Repositories
                 Results = DbUtils.GetBool(reader, "Results"),
                 ProviderId = DbUtils.GetInt(reader, "ProviderId"),
                 CollectionDate = DbUtils.GetDateTime(reader, "CollectionDate"),
+                CompletedDate = DbUtils.GetDateTime(reader, "CompletedDate"),
                 SampleId = DbUtils.GetInt(reader, "SampleId"),
                 Sample = new Sample()
                 {

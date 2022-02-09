@@ -10,17 +10,29 @@ const AddTest = () => {
     const [sample, setSample] = useState([]);
     const history = useHistory();
     const providerId = localStorage.getItem("ProviderId")
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
+    }
 
 
     let today = new Date(Date.now())
-
     const [test, setTest] = useState({
-        collectionDate: Date.now(),
+        collectionDate: "",
         sampleId: "",
         results: false,
         patientId: "",
         providerId: providerId,
-        completedDate:  today.toISOString()
+        completedDate:  formatDate(today)
     });
 
   
@@ -77,6 +89,7 @@ const AddTest = () => {
                         onChange={handleControlledInputChange}
                         className="form-control"
                     >
+                        
                         <option value="0">Select a Sample Type</option>
                         {sample.map((s) => (
                             <option key={s.id} value={s.id}>
@@ -120,7 +133,7 @@ const AddTest = () => {
             </button>
             <button
                 className="btn-add-edit"
-                onClick={() => history.push(`/myTests`)}
+                onClick={() => history.push(`/test`)}
             >
                 Cancel
             </button>

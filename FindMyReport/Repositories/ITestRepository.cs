@@ -1,4 +1,5 @@
 ﻿using FindMyReport.Models;
+using System;
 using System.Collections.Generic;
 
 namespace FindMyReport.Repositories
@@ -10,5 +11,7 @@ namespace FindMyReport.Repositories
         List<Test> GetAll();
         Test GetTestById(int id);
         void Update(Test test);
+
+        Test FindMyTest(int Id, DateTime CollectionDate);
     }
 }

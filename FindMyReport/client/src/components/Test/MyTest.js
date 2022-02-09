@@ -2,14 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 
-const Test = ({ test }) => {
+const MyTest = () => {
   const history = useHistory();
-  const handleDelete = () => {
-    history.push(`/deleteTest/${test.id}`);
-  };
-  const handleAdd = () => {
-    history.push(`/addtestreport/${test.id}`);
-  };
+
   return (
     <tbody>
       <tr className="text-left px-2">
