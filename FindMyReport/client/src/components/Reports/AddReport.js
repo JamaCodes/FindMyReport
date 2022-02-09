@@ -6,12 +6,11 @@ import { addReport } from "../../modules/reportManager";
 
 const AddReport = () => {
     const history = useHistory();
-    
     let today = new Date(Date.now())
     const [report, setReport] = useState({
         name: "",
         description: "",
-        completedDate:  formatDate(today)
+        createdDate:  formatDate(today)
     });
     function formatDate(date) {
         var d = new Date(date),

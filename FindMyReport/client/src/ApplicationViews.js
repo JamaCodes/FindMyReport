@@ -14,6 +14,7 @@ import  ReportList from "./components/Reports/ReportList";
 import AddReport from "./components/Reports/AddReport";
 import DeleteReport from "./components/Reports/DeleteReport";
 import  FindMyTest  from "./components/Test/FindMyTest";
+import Test from "./components/Test/Test";
 
 export default function ApplicationViews({ isLoggedIn }) {
     return (
@@ -51,8 +52,8 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/addtestreport/:id">
                     <AddReportTest  />
                 </Route>
-
-                <Route path="/reporttest/">
+            
+                <Route path="/reporttest/:id">
                     <DisplayReportTest />
                 </Route>
 

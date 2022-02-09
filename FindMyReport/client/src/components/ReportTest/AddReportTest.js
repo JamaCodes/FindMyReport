@@ -8,7 +8,7 @@ const AddReportTest = () => {
     const  testId  = useParams();
     const [report, setReport] = useState([]);
     const [reportTest, setReportTest] = useState({
-        testId: testId,
+        testId: testId.id,
         reportId: "",
     });
   const history = useHistory();

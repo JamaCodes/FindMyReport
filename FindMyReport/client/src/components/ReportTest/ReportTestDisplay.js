@@ -1,8 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getReportTestById } from "../../modules/reportTestManager";
 
-const DisplayReportTest = ({ id = 1 }) => {
+const DisplayReportTest = () => {
+  const { id } = useParams();
+
   const [reportTest, setReportTest] = useState([]);
   const [reduced, setReduced] = useState([]);
   const [reducedResults, setReducedResults] = useState([]);

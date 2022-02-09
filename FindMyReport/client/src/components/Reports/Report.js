@@ -10,6 +10,9 @@ const Report = ({ report }) => {
   const handleViewReportTests = () => {
     history.push(`/testreport/${report.id}`);
   };
+  const ViewReportTests = () => {
+    history.push(`/reporttest/${report.id}`);
+  };
   return (
     <tbody>
       <tr className="text-left px-2">
@@ -20,6 +23,9 @@ const Report = ({ report }) => {
           >
             Edit
           </Button>
+          <Button onClick={ViewReportTests}>
+            View Data
+          </Button>
           <Button color="danger" onClick={handleDelete}>
             Delete
           </Button>
@@ -28,9 +34,9 @@ const Report = ({ report }) => {
         <td className="text-left px-2">{report.description}</td>
         <td className="text-left px-2">{report.createdDate}</td>
         <td className="text-left px-2"> 
-        <Button color="success" onClick={handleViewReportTests}>
+        {/* <Button color="success" onClick={handleViewReportTests}>
           Add
-          </Button>
+          </Button> */}
         </td>
       </tr>
     </tbody>
