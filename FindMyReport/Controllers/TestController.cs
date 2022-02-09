@@ -37,6 +37,20 @@ namespace FindMyReport.Controllers
             var test = _testRepository.GetTestById(id);
             return Ok(test);
         }
+        [HttpGet("findmytest")]
+        public IActionResult FindMyTest(int Id, DateTime CollectionDate)
+        {
+           var checkDate = CollectionDate.ToString("MM/dd/yyy"); ;
+           var test = _testRepository.GetTestById(Id);
+           var testdate = test.CollectionDate.ToString("MM/dd/yyy");
+            var which = DateTime.Compare(test.CompletedDate, test.CollectionDate);
+            if (checkDate == testdate)
+            {
+            return Ok(which);
+   
+            }
+            return BadRequest("Something Went Wrong");
+        }
         [HttpPut("{id}")]
         public IActionResult Put(int id, Test test)
         {

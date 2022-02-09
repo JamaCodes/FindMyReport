@@ -40,6 +40,20 @@ namespace FindMyReport.Repositories
                 }
             }
         }
+        public void Delete(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Patient WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void Add(Patient patient)
         {
             using (var conn = Connection)
@@ -63,6 +77,36 @@ namespace FindMyReport.Repositories
                     cmd.Parameters.AddWithValue("@DOB", patient.DOB);
                     cmd.Parameters.AddWithValue("@RaceId", patient.RaceId);
                     patient.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+        public Patient GetPatientByName(string FirstName, string LastName, DateTime PatientDOB)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT p.Id, p.FirstName, p.LastName, 
+                              p.Address,
+                              p.City, p.State, p.ZipCode,
+                              p.Phone, p.DOB, p.RaceId,
+                              r.[Name] AS Name, r.Id as Id
+                         FROM Patient p
+                              LEFT JOIN Race r ON p.RaceId = R.id
+                         WHERE FirstName = @FirstName and LastName = @LastName and DOB = @DOB";
+                    cmd.Parameters.AddWithValue("@FirstName", FirstName);
+                    cmd.Parameters.AddWithValue("@LastName", LastName);
+                    cmd.Parameters.AddWithValue("@DOB", PatientDOB);
+                    var reader = cmd.ExecuteReader();
+                    Patient patient = null;
+                    if (reader.Read())
+                    {
+                        patient = NewPatientFromReader(reader);
+                    }
+                    reader.Close();
+                    return patient;
                 }
             }
         }

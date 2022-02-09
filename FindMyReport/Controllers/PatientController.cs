@@ -31,6 +31,16 @@ namespace FindMyReport.Controllers
             _patientRepository.Add(patient);
             return Ok(patient);
         }
+        [HttpGet("firstname={FirstName}lastname={LastName}")]
+        public IActionResult DoesUserExist(string FirstName, string LastName, DateTime PatientDOB)
+        {
+            var patient = _patientRepository.GetPatientByName(FirstName, LastName, PatientDOB);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+            return Ok(true);
+        }
     }
 }
 
