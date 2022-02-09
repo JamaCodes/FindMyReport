@@ -38,16 +38,14 @@ namespace FindMyReport.Controllers
             return Ok(test);
         }
         [HttpGet("findmytest")]
-        public IActionResult FindMyTest(int Id, DateTime CollectionDate)
+        public IActionResult FindMyTest(int Id, string CollectionDate)
         {
-           var checkDate = CollectionDate.ToString("MM/dd/yyy"); ;
+           var checkDate = CollectionDate;
            var test = _testRepository.GetTestById(Id);
-           var testdate = test.CollectionDate.ToString("MM/dd/yyy");
-            var which = DateTime.Compare(test.CompletedDate, test.CollectionDate);
+           var testdate = test.CollectionDate.ToString("yyyy/MM/dd");
             if (checkDate == testdate)
             {
-            return Ok(which);
-   
+            return Ok(test);
             }
             return BadRequest("Something Went Wrong");
         }

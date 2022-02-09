@@ -5,14 +5,14 @@ import { addReport } from "../../modules/reportManager";
 
 
 const AddReport = () => {
+    const history = useHistory();
+    
+    let today = new Date(Date.now())
     const [report, setReport] = useState({
         name: "",
         description: "",
         completedDate:  formatDate(today)
     });
-    const history = useHistory();
-    
-    let today = new Date(Date.now())
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -46,7 +46,7 @@ const AddReport = () => {
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input
-                        type="date"
+                        type="text"
                         id="name"
                         onChange={handleControlledInputChange}
                         required

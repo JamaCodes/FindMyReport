@@ -13,6 +13,7 @@ import  EditReport  from "./components/Reports/EditReport";
 import  ReportList from "./components/Reports/ReportList";
 import AddReport from "./components/Reports/AddReport";
 import DeleteReport from "./components/Reports/DeleteReport";
+import  FindMyTest  from "./components/Test/FindMyTest";
 
 export default function ApplicationViews({ isLoggedIn }) {
     return (
@@ -65,6 +66,9 @@ export default function ApplicationViews({ isLoggedIn }) {
 
                 <Route path="/deletereport/:id">
                     <DeleteReport userparams />
+                </Route>
+                <Route path="/findmytest">
+                    <FindMyTest  />
                 </Route>
                 
         </Switch>
