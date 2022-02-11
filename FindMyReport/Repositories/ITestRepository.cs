@@ -8,10 +8,11 @@ namespace FindMyReport.Repositories
     {
         void Add(Test test);
         void Delete(int id);
-        List<Test> GetAll();
+        List<Test> GetAll(int id);
         Test GetTestById(int id);
         void Update(Test test);
 
-        Test FindMyTest(int Id, DateTime CollectionDate);
+      
+        Test GetTestForEdit(int id);
     }
 }

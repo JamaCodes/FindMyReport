@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useHistory, Link } from "react-router-dom";
 import { login, logout } from "../modules/authManager";
+import FindMyTest from "./Test/FindMyTest";
 
 
 export default function Login() {
@@ -22,6 +23,7 @@ export default function Login() {
     };
 
     return (
+      <div class="position-absolute top-50 start-50 translate-middle">
         <Form onSubmit={loginSubmit}>
       <fieldset>
         <FormGroup>
@@ -40,5 +42,6 @@ export default function Login() {
         </em>
       </fieldset>
     </Form>
+     </div>
     );
 }

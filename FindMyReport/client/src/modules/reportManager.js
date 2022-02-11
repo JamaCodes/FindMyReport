@@ -3,8 +3,9 @@ const baseUrl = "/api/Report";
 export const getAllReports = () => {
     return fetch(baseUrl).then((res) => res.json());
 };
-export const getReportById = () => {
-    return fetch(baseUrl).then((res) => res.json());
+
+export const getReportById = (id) => {
+    return fetch(`${baseUrl}/ReportsById/${id}`).then((res) => res.json());
 };
 export const deleteReport = (reportId) => {
     return fetch(baseUrl + `/${reportId}`, {
@@ -25,8 +26,8 @@ export const addReport = (report) => {
     });
 };
 
-export const UpdateReport = (report) => {
-    return fetch(`${baseUrl}/${report.id}`, {
+export const UpdateReport = (report, id) => {
+    return fetch(`${baseUrl}/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

@@ -14,7 +14,7 @@ const PatientList = () => {
   }, []);
 
   return (
-    <Table className="patientList" size="sm" striped="true">
+    <Table className="patientList" size="sm">
     <thead>
     <tr>
       <th scope="row">#</th>

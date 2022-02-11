@@ -77,7 +77,7 @@ var results = newTest?.results
     </div>
     <div className="testList">
       {
-        (results === true)
+        (results == true)
           ? <div> Something went wrong. You sick. </div> 
           : <div> Everything in the world is fine. You're not dying!</div> 
       }
@@ -91,6 +91,7 @@ var results = newTest?.results
               <th scope="row">Provider Name</th>
               <th scope="row">Collection Date</th>
               <th scope="row">Completed Date</th>
+              <th scope="row">Result</th>
             </tr>
           </thead>   
         <td className="text-left px-2">{newTest?.sample?.name}</td>
@@ -99,6 +100,7 @@ var results = newTest?.results
         <td className="text-left px-2">{newTest?.userProfile?.fullName}</td>
         <td className="text-left px-2">{newTest?.collectionDate}</td>
         <td className="text-left px-2">{newTest?.completedDate}</td>
+        <td className="text-left px-2">{newTest?.results ? "positive" : "neagtive"}</td>
         </Table>
         </>
     );
