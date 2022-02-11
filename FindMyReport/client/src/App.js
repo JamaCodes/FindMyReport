@@ -9,12 +9,18 @@ import SideBar from "./components/SideBar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [sidebarIsOpen, setSidebarOpen] = useState(true);
-  const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
+  const [sidebarIsOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(false);
+
+  
 
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);
   }, []);
+  useEffect(() => {
+    setSidebarOpen(true)
+  }, [isLoggedIn]);
 
   // The "isLoggedIn" state variable will be null until //  the app's connection to firebase has been established.
   //  Then it will be set to true or false by the "onLoginStatusChange" function
@@ -27,8 +33,10 @@ function App() {
     <Router>
       <>
       <div className="App wrapper">
-        <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
-        <ApplicationViews className="content" isLoggedIn={isLoggedIn} toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+    
+  <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+  
+        <ApplicationViews className="content" isLoggedIn={isLoggedIn} />
         </div>
         </>
     </Router>

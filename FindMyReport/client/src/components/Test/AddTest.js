@@ -63,10 +63,10 @@ const AddTest = () => {
 
 
     return (
-        <form className="main-content">
-            <h2 className="_title">Add Test:</h2>
+        <form div class="position-absolute top-50 start-50 translate-middle">
+            <h2 className="_title">Record Test:</h2>
             <fieldset className="fieldset">
-                <div className="form-group">
+                <div className="form-group p-2">
                     <label htmlFor="collectionDate">CollectionDate:</label>
                     <input
                         type="date"
@@ -80,7 +80,7 @@ const AddTest = () => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group p-2">
                     <label htmlFor="content">Type:</label>
                     <select
                         value={test.sampleId}

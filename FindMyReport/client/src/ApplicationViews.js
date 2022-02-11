@@ -15,15 +15,17 @@ import AddReport from "./components/Reports/AddReport";
 import DeleteReport from "./components/Reports/DeleteReport";
 import  FindMyTest  from "./components/Test/FindMyTest";
 import Test from "./components/Test/Test";
+import Register from "./components/Register";
+import CheckInPatient from "./components/Patient/AddPatient";
 
-export default function ApplicationViews({ isLoggedIn }) {
+export default function ApplicationViews({ isLoggedIn}) {
     return (
         <main>
         <Switch> 
 
 
         <Route path="/" exact>
-                    {isLoggedIn ? <Dashboard />: <Redirect to="/login" />}
+                    {isLoggedIn ? <Dashboard  />: <Redirect to="/login" />}
                 </Route>
         <Route path="/test" exact>
                     {isLoggedIn ? <TestList />: <Redirect to="/login" />}
@@ -42,34 +44,41 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route> 
 
                 <Route path="/editTest/:id">
-                    <EditTest userparams />
+                {isLoggedIn ?  <EditTest  /> : <Redirect to="/login" />} 
                 </Route>
-
+                <Route path="/editreport/:id">
+                {isLoggedIn ?  <EditReport /> : <Redirect to="/login" />} 
+                </Route>
                 <Route path="/deleteTest/:id">
-                    <DeleteTest userparams />
+                {isLoggedIn ?  <DeleteTest /> : <Redirect to="/login" />} 
                 </Route>
 
                 <Route path="/addtestreport/:id">
-                    <AddReportTest  />
+                {isLoggedIn ?  <AddReportTest /> : <Redirect to="/login" />} 
+
                 </Route>
             
                 <Route path="/reporttest/:id">
-                    <DisplayReportTest />
+                {isLoggedIn ?  <DisplayReportTest /> : <Redirect to="/login" />} 
                 </Route>
 
                 <Route path="/addreport" exact>
                 {isLoggedIn ?  <AddReport /> : <Redirect to="/login" />}
                 </Route> 
 
-                <Route path="/editreport/:id">
-                    <EditReport userparams />
-                </Route>
+
 
                 <Route path="/deletereport/:id">
-                    <DeleteReport userparams />
+                {isLoggedIn ?    <DeleteReport userparams /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/findmytest">
                     <FindMyTest  />
+                </Route>
+                <Route path="/register">
+                    <Register  />
+                </Route>
+                <Route path="/checkin">
+                    <CheckInPatient  />
                 </Route>
                 
         </Switch>

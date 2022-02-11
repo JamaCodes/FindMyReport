@@ -19,10 +19,10 @@ namespace FindMyReport.Controllers
             _testRepository = testRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet ("provider/{id}")]
+        public IActionResult GetAll(int id)
         {
-            var tests = _testRepository.GetAll();
+            var tests = _testRepository.GetAll(id);
             return Ok(tests);
         }
         [HttpPost]
@@ -37,6 +37,13 @@ namespace FindMyReport.Controllers
             var test = _testRepository.GetTestById(id);
             return Ok(test);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetTestForEdit(int id)
+        {
+            var test = _testRepository.GetTestForEdit(id);
+            return Ok(test);
+        }
+      
         [HttpGet("findmytest")]
         public IActionResult FindMyTest(int Id, string CollectionDate)
         {
@@ -49,14 +56,10 @@ namespace FindMyReport.Controllers
             }
             return BadRequest("Something Went Wrong");
         }
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Test test)
+        [HttpPut]
+        public IActionResult Put(Test test)
         {
-            if (id != test.Id)
-            {
-                return BadRequest();
-            }
-
+        
             _testRepository.Update(test);
             return NoContent();
         }

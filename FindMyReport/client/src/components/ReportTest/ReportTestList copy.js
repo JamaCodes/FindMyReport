@@ -23,7 +23,7 @@ const ReportTestList = () => {
             </Button>
       </div>
       <div>
-        <Table className="reportTestList" size="sm" striped="true">
+        <Table className="reportTestList" size="sm">
           <thead>
             <tr>
               <th scope="row">Name</th>

@@ -11,13 +11,13 @@ const DeleteReport = () => {
     const { id } = useParams();
 
     const handleCancel = () => {
-        history.push("/reportlist")
+        history.push("/report")
     }
 
     const handleDelete = () => {
         deleteReport(id)
         console.log(id);
-        history.push("/reportlist")
+        history.push("/report")
     }
     return (
         <Card>

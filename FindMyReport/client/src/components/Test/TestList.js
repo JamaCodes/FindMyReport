@@ -4,29 +4,35 @@ import { Button, Table } from "reactstrap";
 import { getAllTests } from "../../modules/testManager";
 import { useHistory } from "react-router-dom"
 
+
 const TestList = () => {
   const history = useHistory();
   const [tests, setTests] = useState([]);
+ 
+  const id = localStorage.getItem("ProviderId")
+
+ 
   const getTests = () => {
-    getAllTests().then((tests) => setTests(tests));
+    getAllTests(id).then((tests) => setTests(tests));
   };
   useEffect(() => {
     getTests();
   }, []);
 
-  useEffect(() => {
-    getTests();
-  }, []);
+ if (!id){
+   return null
+ }
+
 
   return (
-    <>
+    <div className="p-5">
       <div>
       <Button color="info" onClick={() => history.push(`/addTest`)}>
                 Create New Test
             </Button>
       </div>
       <div>
-        <Table className="testList" size="sm" striped="true">
+        <Table className="testList" size="sm">
           <thead>
             <tr>
               <th scope="row">Action</th>
@@ -45,7 +51,7 @@ const TestList = () => {
           ))}
         </Table>
       </div>
-    </>
+    </div>
   );
 };
 export default TestList;

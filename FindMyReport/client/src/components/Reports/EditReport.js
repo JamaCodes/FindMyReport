@@ -3,20 +3,14 @@ import { useHistory } from "react-router";
 import { UpdateReport } from "../../modules/reportManager";
 import { getAllPatients } from "../../modules/patientManager";
 import {getAllSamples} from "../../modules/sampleManager";
-import { useParams } from "react-router-dom/";
+import { useParams } from "react-router-dom";
 import { getReportById } from "../../modules/reportManager";
 
 
 const EditReport = () => {
     const history = useHistory();
-    
-
-    const [report, setReport] = useState({
-        name: "",
-        description: "",
-        createDate:  report.createDate,
-    });
     const { id } = useParams();
+    const [report, setReport] = useState({});
 
     const getReport = () => {
         getReportById(id).then(res => setReport(res))
@@ -31,7 +25,7 @@ const EditReport = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-       UpdateReport(report).then(() => history.push(`/reportlist`));;
+       UpdateReport(report, id).then(() => history.push(`/report`));;
     };
 
     useEffect(() => {
@@ -47,7 +41,7 @@ const EditReport = () => {
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input
-                        type="date"
+                        type="text"
                         id="name"
                         onChange={handleControlledInputChange}
                         required

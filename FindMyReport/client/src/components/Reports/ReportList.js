@@ -15,14 +15,14 @@ const ReportList = () => {
   }, []);
 
   return (
-    <>
+    <div className="p-5">
       <div>
       <Button color="info" onClick={() => history.push(`/addReport`)}>
                 Create New Report
             </Button>
       </div>
       <div>
-        <Table className="reportList" size="sm" striped="true">
+        <Table className="reportList" size="sm" >
           <thead>
             <tr>
               <th scope="row">Name</th>
@@ -36,7 +36,7 @@ const ReportList = () => {
           ))}
         </Table>
       </div>
-    </>
+    </div>
   );
 };
 export default ReportList;

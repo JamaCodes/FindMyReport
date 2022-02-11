@@ -4,11 +4,14 @@ export const FindTest = (TestId, CollectionDate) => {
 
     return fetch(baseUrl + `/findmytest/?Id=${TestId}&CollectionDate=${date}`).then((res) => res.json());
 };
-export const getAllTests = () => {
-    return fetch(baseUrl).then((res) => res.json());
+export const getAllTests = (id) => {
+    return fetch(baseUrl + `/provider/${id}`).then((res) => res.json());
 };
-export const getTestById = () => {
-    return fetch(baseUrl).then((res) => res.json());
+export const getTestById = (id) => {
+    return fetch(`${baseUrl}/TestsById/${id}`).then((res) => res.json());
+};
+export const getTestForEdit = (id) => {
+    return fetch("/" + id).then((res) => res.json());
 };
 export const deleteTest = (testId) => {
     return fetch(baseUrl + `/${testId}`, {
@@ -19,6 +22,13 @@ export const deleteTest = (testId) => {
     });
 };
 export const addTest = (test) => {
+    console.log(test)
+    if(test.results == "true"){
+        test.results = true
+    }
+    else{
+        test.results = false
+    }
     return fetch(baseUrl, {
         method: "POST",
         headers: {
@@ -29,7 +39,14 @@ export const addTest = (test) => {
 };
 
 export const UpdateTest = (test) => {
-    return fetch(`${baseUrl}/${test.id}`, {
+    console.log(test)
+    if(test.results == "true"){
+        test.results = true
+    }
+    else{
+        test.results = false
+    }
+    return fetch(baseUrl, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

@@ -4,7 +4,7 @@ import { UpdateTest } from "../../modules/testManager";
 import { getAllPatients } from "../../modules/patientManager";
 import {getAllSamples} from "../../modules/sampleManager";
 import { useParams } from "react-router-dom/";
-import { getTestById } from "../../modules/testManager";
+import { getTestForEdit } from "../../modules/testManager";
 
 
 const EditTest = () => {
@@ -12,16 +12,18 @@ const EditTest = () => {
     const [sample, setSample] = useState([]);
     const history = useHistory();
     
-
-    const [test, setTest] = useState({
-        collectionDate: "",
-        sampleId: "",
-        results: " ",
-        patientId: "",
-        providerId: " ",
-        completedDate:  "",
-    });
     const { id } = useParams();
+  
+    const [test, setTest] = useState({
+        id: 15,
+        sampleId: 1,
+        patientId: 8,
+        results: true,
+        collectionDate: "",
+        providerId: 1,
+        completedDate: "",
+    });
+
 
   
     const getPatients = () => {
@@ -32,12 +34,14 @@ const EditTest = () => {
     };
 
     const getTest = () => {
-        getTestById(id).then(res => setTest(res))
+        getTestForEdit(id).then(res => setTest(res))
         };
 
     const handleControlledInputChange = (event) => {
         const newTest = { ...test };
         let selectedVal = event.target.value;
+        console.log(selectedVal)
+     
         newTest[event.target.id] = selectedVal;
         setTest(newTest);
     };
@@ -54,26 +58,12 @@ const EditTest = () => {
      
     }, []);
 
-
+   
 
     return (
         <form className="main-content">
             <h2 className="_title">Edit Test:</h2>
             <fieldset className="fieldset">
-                <div className="form-group">
-                    <label htmlFor="collectionDate">CollectionDate:</label>
-                    <input
-                        type="date"
-                        id="collectionDate"
-                        onChange={handleControlledInputChange}
-                        required
-                        autoFocus
-                        rows="6"
-                        className="form-control"
-                        value={test.collectionDate}
-                    />
-                </div>
-
                 <div className="form-group">
                     <label htmlFor="content">Type:</label>
                     <select

@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #fff;
 }
 
 @keyframes App-logo-spin {
@@ -40,8 +40,8 @@
 .sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: #cad4fd;
-  color: #fff;
+  background: #0c0c0c;
+  color: rgb(5, 4, 4);
   margin-left: -250px;
   transition: all 0.5s;
 }
@@ -52,7 +52,7 @@
 }
 
 .sidebar-header {
-  background: #6d7fcc;
+  background: #51c796;
 }
 
 .sidebar-header h3 {
@@ -70,13 +70,13 @@
 }
 
 .nav-item:hover {
-  color: #7386d5;
-  background: #fff;
+  color: #000;
+  background: rgb(150, 149, 149);
 }
 
 .items-menu {
   color: #fff;
-  background: #6d7fcc;
+  background: #fff;
 }
 
 li a.dropdown-toggle::after {
@@ -104,7 +104,7 @@ li a.dropdown-toggle::after {
 }
 
 .side-menu::-webkit-scrollbar-thumb {
-  background: #8a93bb;
+  background: #fff;
   border-radius: 3px;
 }
 
@@ -155,6 +155,10 @@ li a.dropdown-toggle::after {
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
+}
+.nav-link {
+  display: block;
+  color: #ffffff !important;
 }
 
 a,
